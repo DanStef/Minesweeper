@@ -94,10 +94,14 @@ class Block {
   }
 
   putFlag() {
-  	if(this.flag == false)
+  	if(this.flag == false){
+  		mines--
   		this.flag = true
-  	else
+  	}
+  	else {
+  		mines++
   		this.flag = false
+  	}
   }
 
 }

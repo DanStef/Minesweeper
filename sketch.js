@@ -1,9 +1,14 @@
+
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+
 my_width = 800
 my_height = 800
 nr_blocks = 20
 my_block = null
 mines = 60
 blocks = []
+let minesNo
 function setup() {
   // put setup code here
 
@@ -60,6 +65,8 @@ function setup() {
   	}
   }
 
+  minesNo = createElement('h1', 'Mines remaining:' + mines)
+  minesNo.position(800, 10)
 }
 
 function draw() {
@@ -73,6 +80,8 @@ function draw() {
   	}
   }
 
+  minesNo.html('Mines remaining:' + mines)
+  minesNo.position(800, 10)
 
 }
 
@@ -88,6 +97,9 @@ function mouseClicked() {
 		j++
 	}
 
+	if(blocks[i - 1][j - 1].flag == true)
+		return
+
 	blocks[i - 1][j - 1].isClicked()
 
 
@@ -100,7 +112,7 @@ function mouseClicked() {
 }
 
 function mousePressed(event) {
-	if(event.buttons == 4) {
+	if(event.buttons == 2) {
 		i = 0
 		j = 0
 		while(i * my_width/nr_blocks < mouseX) {
